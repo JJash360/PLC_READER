@@ -11,3 +11,6 @@ __pycache__/
 # Archivos de configuración del IDE
 .vscode/
 .idea/
+
+# El gitignore
+.gitignore
