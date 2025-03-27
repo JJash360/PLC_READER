@@ -29,7 +29,6 @@ def conectar_plc(IP_ADDRESS):
     try:
         plc=snap7.client.Client()
         plc.connect(IP_ADDRESS,0,1)
-        print(f"Conectado con el PLC con IP: {IP_ADDRESS}")
     except Exception as e:
         print(f"Error al conectar PLC: {e}")
 
@@ -150,7 +149,7 @@ def escribir_memory(IP_ADDRESS, number_memory, offset, data_type, value):
         plc.mb_write(number_memory, size, memory)
 
         plc.disconnect()
-        print(f"Memoria M{number_memory}.{offset} actualizada con {value}")
+        # print(f"Memoria M{number_memory}.{offset} actualizada con {value}")
     
     except Exception as e:
         print(f"Error al escribir en la memoria M{number_memory}.{offset}: {e}")
@@ -165,7 +164,7 @@ def activar_bit(IP_ADDRESS,number_memory,offset):
         set_bool(bit,0,offset,False)
         plc.mb_write(number_memory,1,bit)
         plc.disconnect()
-        print(F"Memoria M{number_memory}.{offset} funcionando")
+        # print(F"Memoria M{number_memory}.{offset} funcionando")
     except Exception as e:
         print(f"Error con la memoria M{number_memory}.{offset}: {e}")
 

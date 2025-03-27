@@ -19,14 +19,14 @@ class MainWindow(QMainWindow):
         """PRUEBA"""
         """Imágenes de auto y manual"""
         self.pixmap_dict = {
-            self.label_13: (QPixmap("gui/img/select_1.png"), QPixmap("gui/img/select_2.png")),
+            self.label_13: (QPixmap("app/gui/img/select_1.png"), QPixmap("app/gui/img/select_2.png")),
         }
         #Configurar imágenes y botones iniciales
         self.label_13.setPixmap(self.pixmap_dict[self.label_13][0])
 
         """Imágenes de bomba"""
         self.pixmap_bomb = {
-            self.label_12: (QPixmap("gui/img/motor_left.png"), QPixmap("gui/img/motor_fault.png"), QPixmap("gui/img/motor_off.png"), QPixmap("gui/img/motor_right.png"))
+            self.label_12: (QPixmap("app/gui/img/motor_left.png"), QPixmap("app/gui/img/motor_fault.png"), QPixmap("app/gui/img/motor_off.png"), QPixmap("app/gui/img/motor_right.png"))
         }
         #Configurar imágenes y botones iniciales
         self.label_12.setPixmap(self.pixmap_bomb[self.label_12][3])
@@ -124,8 +124,8 @@ class MainWindow(QMainWindow):
             self.giro_izq_1.setCheckable(True)
             self.giro_der_1.setCheckable(True)
             #Llamar funciones
-            self.giro_izq_1.clicked.connect(lambda:                         self.cambiar_bomba(self.label_12,50,2,70,7,self.giro_izq_1,self.giro_der_1,3,4))
-            self.giro_der_1.clicked.connect(lambda:     self.cambiar_bomba(self.label_12,50,2,70,7,self.giro_izq_1,self.giro_der_1,3,4))
+            self.giro_izq_1.clicked.connect(lambda:self.cambiar_bomba(self.label_12,50,2,70,7,self.giro_izq_1,self.giro_der_1,3,4))
+            self.giro_der_1.clicked.connect(lambda:self.cambiar_bomba(self.label_12,50,2,70,7,self.giro_izq_1,self.giro_der_1,3,4))
 
             """PLC REAL"""
             """Lectura de memorias enteras o reales"""
@@ -216,7 +216,7 @@ class MainWindow(QMainWindow):
         try:
             escribir_memory(IP_ADDRESS_1,number_memory,offset,"BOOL",True)
             escribir_memory(IP_ADDRESS_1,number_memory,offset,"BOOL",False)
-            print(f"Memoria M{number_memory}.{offset} funcionando")
+            # print(f"Memoria M{number_memory}.{offset} funcionando")
         except Exception as e:
             print(f"Error al funcionar la memoria M{number_memory}.{offset}: {e}")
 
@@ -232,37 +232,29 @@ class MainWindow(QMainWindow):
         else:
             etiqueta.setStyleSheet("background-color: gray; color: black; font-weight: bold;")
 
-    def alternar_auto_manual(self,etiqueta,auto,manual,number_memory,offset,number_estado):
+    def alternar_auto_manual(self, etiqueta, auto, manual, number_memory, offset, number_estado):
         try:
-            if etiqueta not in self.pixmap_dict:
+            pixmaps = self.pixmap_dict.get(etiqueta)
+            
+            if not pixmaps:
                 print(f"Error: {etiqueta.objectName()} no está en el diccionario de imágenes.")
                 return
+            
+            img_original, img_alternativa = pixmaps
+            estado = number_estado.get(etiqueta, False)  # Estado actual, por defecto False
 
-            img_original, img_alternativa = self.pixmap_dict[etiqueta]
+            # Alternar estado y actualizar UI
+            etiqueta.setPixmap(img_alternativa if not estado else img_original)
+            auto.setChecked(not estado)
+            manual.setChecked(estado)
 
-            # Obtener el estado actual
-            estado = number_estado[etiqueta]
+            # Actualizar memoria
+            escribir_memory(IP_ADDRESS_1, number_memory, offset, "BOOL", not estado)
 
-            # Alternar estado
-            if not estado:  # Si está en manual, cambiar a auto
-                etiqueta.setPixmap(img_alternativa)
-                print(f"Imagen alternativa mostrada en {etiqueta.objectName()} (Auto)")
-                auto.setChecked(True)
-                manual.setChecked(False)
-                escribir_memory(IP_ADDRESS_1,number_memory,offset,"BOOL",True)
-                print("Motor en modo automático")
-            else:  # Si está en auto, cambiar a manual
-                etiqueta.setPixmap(img_original)
-                print(f"Imagen original mostrada en {etiqueta.objectName()} (Manual)")
-                auto.setChecked(False)
-                manual.setChecked(True)
-                escribir_memory(IP_ADDRESS_1,number_memory,offset,"BOOL",False)
-                print("Motor en modo manual")
-
-            #Guardar nuevo estado
+            # Guardar nuevo estado
             number_estado[etiqueta] = not estado
 
-            #Forzar la actualización del QLabel para reflejar el cambio
+            # Forzar la actualización de la imagen en QLabel
             etiqueta.repaint()
 
         except Exception as e:
@@ -279,7 +271,7 @@ class MainWindow(QMainWindow):
             # Si no hay imagen inicial, establecer la blanca
             if etiqueta.pixmap() is None:
                 etiqueta.setPixmap(img_white)
-                print(f"Imagen original mostrada en {etiqueta.objectName()}")
+                # print(f"Imagen original mostrada en {etiqueta.objectName()}")
                 return
 
             # Verificar estados actuales
@@ -293,19 +285,19 @@ class MainWindow(QMainWindow):
                     etiqueta.setPixmap(img_blue)
                     escribir_memory(IP_ADDRESS_1, number_memory_run, offset_izq, "BOOL", True)
                     escribir_memory(IP_ADDRESS_1, number_memory_run, offset_der, "BOOL", False)
-                    print(f"Imagen cambiada a Azul en {etiqueta.objectName()} (Giro Izquierda)")
+                    # print(f"Imagen cambiada a Azul en {etiqueta.objectName()} (Giro Izquierda)")
                 elif der.isChecked():
                     izq.setChecked(False)  # Asegurar que solo un botón esté activo
                     etiqueta.setPixmap(img_yellow)
                     escribir_memory(IP_ADDRESS_1, number_memory_run, offset_izq, "BOOL", False)
                     escribir_memory(IP_ADDRESS_1, number_memory_run, offset_der, "BOOL", True)
-                    print(f"Imagen cambiada a Amarillo en {etiqueta.objectName()} (Giro Derecha)")
+                    # print(f"Imagen cambiada a Amarillo en {etiqueta.objectName()} (Giro Derecha)")
             elif estado_stop:
                 etiqueta.setPixmap(img_red)
-                print(f"Imagen cambiada a Rojo en {etiqueta.objectName()} (Paro)")
+                # print(f"Imagen cambiada a Rojo en {etiqueta.objectName()} (Paro)")
             else:
                 etiqueta.setPixmap(img_white)
-                print(f"Imagen cambiada a Blanco en {etiqueta.objectName()} (Reposo)")
+                # print(f"Imagen cambiada a Blanco en {etiqueta.objectName()} (Reposo)")
 
             # 🔹 Forzar la actualización del QLabel para reflejar el cambio visualmente
             etiqueta.repaint()
