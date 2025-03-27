@@ -11,7 +11,7 @@ Interfaz gráfica en Python con PyQt5 para comunicarse con PLC Siemens usando Sn
 Asegúrate de tener Python 3.8+ instalado y luego ejecuta:
 
 ```bash
-pip install PyQt5 snap7
+pip install PyQt5 python-snap7
 ```
 
 Para Raspberry Pi, puedes instalar PyQt5 con:
