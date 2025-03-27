@@ -1,5 +1,4 @@
-PySide6==6.8.2.1
-PySide6_Addons==6.8.2.1
-PySide6_Essentials==6.8.2.1
+PyQt5==5.15.11
+PyQt5-Qt5==5.15.2
+PyQt5_sip==12.17.0
 python-snap7==2.0.2
-shiboken6==6.8.2.1

@@ -584,17 +584,50 @@ QRadioButton::indicator:checked {
                         <enum>QFrame::Raised</enum>
                        </property>
                        <layout class="QVBoxLayout" name="verticalLayout_15">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
                         <item>
-                         <widget class="QLabel" name="falla_3">
-                          <property name="font">
-                           <font>
-                            <pointsize>-1</pointsize>
-                            <weight>75</weight>
-                            <bold>true</bold>
-                           </font>
-                          </property>
+                         <widget class="QFrame" name="frame_39">
                           <property name="styleSheet">
-                           <string notr="true">QLabel {
+                           <string notr="true">background-color: rgb(207, 207, 207);
+</string>
+                          </property>
+                          <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_41">
+                           <property name="spacing">
+                            <number>7</number>
+                           </property>
+                           <property name="leftMargin">
+                            <number>11</number>
+                           </property>
+                           <property name="topMargin">
+                            <number>11</number>
+                           </property>
+                           <property name="rightMargin">
+                            <number>11</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>11</number>
+                           </property>
+                           <item>
+                            <widget class="QPushButton" name="marcha_button_1">
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton {
     background-color: #4CAF50; /* Verde intenso */
     color: white; /* Texto en blanco */
     border-radius: 10px; /* Bordes redondeados */
@@ -602,27 +635,25 @@ QRadioButton::indicator:checked {
     font-weight: bold; /* Texto en negrita */
     font-size: 12px;
     border: 2px solid #388E3C; /* Borde verde oscuro */
+}
+
+QPushButton:hover {
+    background-color: #45A049; /* Verde más claro al pasar el mouse */
+}
+
+QPushButton:pressed {
+    background-color: #388E3C; /* Verde más oscuro al presionar */
 }</string>
-                          </property>
-                          <property name="text">
-                           <string>MARCHA</string>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignCenter</set>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="falla_4">
-                          <property name="font">
-                           <font>
-                            <pointsize>-1</pointsize>
-                            <weight>75</weight>
-                            <bold>true</bold>
-                           </font>
-                          </property>
-                          <property name="styleSheet">
-                           <string notr="true">QLabel {
+                             </property>
+                             <property name="text">
+                              <string>MARCHA</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="paro_button_1">
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton {
     background-color: #D32F2F; /* Rojo intenso */
     color: white;
     border-radius: 10px;
@@ -631,27 +662,24 @@ QRadioButton::indicator:checked {
     font-size: 12px;
     border: 2px solid #B71C1C; /* Rojo más oscuro */
 }
-</string>
-                          </property>
-                          <property name="text">
-                           <string>PARO</string>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignCenter</set>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="falla_5">
-                          <property name="font">
-                           <font>
-                            <pointsize>-1</pointsize>
-                            <weight>75</weight>
-                            <bold>true</bold>
-                           </font>
-                          </property>
-                          <property name="styleSheet">
-                           <string notr="true">QLabel {
+
+QPushButton:hover {
+    background-color: #C62828; /* Rojo más claro al pasar el mouse */
+}
+
+QPushButton:pressed {
+    background-color: #B71C1C; /* Rojo más oscuro al presionar */
+}</string>
+                             </property>
+                             <property name="text">
+                              <string>PARO</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="reset_button_1">
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton {
     background-color: #FBC02D; /* Amarillo intenso */
     color: black; /* Mejor contraste con amarillo */
     border-radius: 10px;
@@ -660,14 +688,21 @@ QRadioButton::indicator:checked {
     font-size: 12px;
     border: 2px solid #F9A825; /* Amarillo más oscuro */
 }
-</string>
-                          </property>
-                          <property name="text">
-                           <string>RESET</string>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignCenter</set>
-                          </property>
+
+QPushButton:hover {
+    background-color: #FDD835; /* Amarillo más claro al pasar el mouse */
+}
+
+QPushButton:pressed {
+    background-color: #F9A825; /* Amarillo más oscuro al presionar */
+}</string>
+                             </property>
+                             <property name="text">
+                              <string>RESET</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
                          </widget>
                         </item>
                        </layout>
