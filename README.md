@@ -28,15 +28,13 @@ python main.py
 ```
 
 ## Licencia
-Este proyecto está licenciado bajo la licencia **MIT**. Para más detalles, consulta el archivo `LICENSE` en este repositorio.
+Este proyecto está licenciado bajo la licencia **GPL-3.0**. Para más detalles, consulta el archivo `LICENSE` en este repositorio.
 
 ## Dependencias y Licencias
 Este software usa las siguientes bibliotecas de terceros:
 
 - Snap7 - Licencia EUPL [(ver aquí)](https://github.com/klemenzagar/snap7)  
 - PyQt5 - Licencia GPL [(ver aquí)](https://riverbankcomputing.com/software/pyqt/license)  
-
-📌 **Nota sobre PyQt5:** PyQt5 usa la licencia GPL, lo que significa que si distribuyes un binario de este software, **debes compartir el código fuente**. Si deseas evitar esta restricción, considera usar PySide6, que está bajo licencia LGPL.
 
 ## Autores
 - **Jashua Jafet Solon Aquino**
