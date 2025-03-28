@@ -485,7 +485,7 @@ QRadioButton::indicator:checked {
                              <enum>Qt::PlainText</enum>
                             </property>
                             <property name="pixmap">
-                             <pixmap>img/mot_on.png</pixmap>
+                             <pixmap>img/motor_off.png</pixmap>
                             </property>
                             <property name="scaledContents">
                              <bool>true</bool>
@@ -1961,7 +1961,7 @@ QSlider::handle:vertical:hover {
                                    <enum>Qt::PlainText</enum>
                                   </property>
                                   <property name="pixmap">
-                                   <pixmap>img/motor_on_2.png</pixmap>
+                                   <pixmap>img/motor_off.png</pixmap>
                                   </property>
                                   <property name="scaledContents">
                                    <bool>true</bool>
